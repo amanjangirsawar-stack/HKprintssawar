@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HK Prints | Personalized Gifts</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f7f8;color:#161616}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #eee;padding:12px 5%;display:flex;align-items:center;gap:18px}
+.logo{font-size:24px;font-weight:900}.logo span{color:#e91e63}.search{flex:1;max-width:600px;background:#f2f2f4;border-radius:10px;padding:11px 15px;border:0;outline:0}.cart{border:0;background:#fff;font-size:23px;cursor:pointer}
+nav{background:#fff;display:flex;gap:12px;padding:12px 5%;overflow:auto;border-bottom:1px solid #eee}nav button{border:1px solid #ddd;background:#fff;border-radius:20px;padding:8px 15px;white-space:nowrap;cursor:pointer}
+.hero{margin:20px 5%;border-radius:22px;padding:35px 7%;background:linear-gradient(120deg,#ffe7f0,#fff);display:flex;justify-content:space-between;align-items:center}.hero h1{font-size:42px;margin:8px 0}.pink{color:#e91e63}.hero p{color:#555}.btn{background:#e91e63;color:#fff;border:0;padding:12px 20px;border-radius:9px;font-weight:bold;cursor:pointer}.heroemoji{font-size:100px}
+section{padding:10px 5% 30px}.title{display:flex;justify-content:space-between;align-items:center}.categories{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}.cat{background:#fff;border:1px solid #eee;border-radius:16px;padding:15px 8px;text-align:center;cursor:pointer;transition:.2s}.cat:hover{transform:translateY(-3px);box-shadow:0 7px 20px #0001}.caticon{height:100px;display:flex;align-items:center;justify-content:center;font-size:55px;background:#fafafa;border-radius:12px;margin-bottom:10px}.cat b{font-size:14px}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{background:#fff;border-radius:15px;overflow:hidden;border:1px solid #eee;position:relative}.sample{height:220px;background:#f0f0f2;display:flex;align-items:center;justify-content:center}.sample span{font-size:80px}.pbody{padding:13px}.pbody h3{font-size:15px;margin:0 0 7px}.price{font-size:19px;font-weight:bold}.old{text-decoration:line-through;color:#999;font-size:12px}.rating{color:#e79b00;font-size:12px;margin:5px 0}.add{width:100%;padding:9px;margin-top:8px;border:1px solid #e91e63;background:#fff;color:#e91e63;border-radius:8px;font-weight:bold}.heart{position:absolute;right:10px;top:10px;border:0;border-radius:50%;background:#fff;padding:7px;font-size:18px}
+.banner{margin:10px 5% 30px;background:#171717;color:#fff;border-radius:18px;padding:25px;display:flex;justify-content:space-between;align-items:center}.banner h2{margin:0}.upload{background:#e91e63;border:0;color:#fff;padding:12px 18px;border-radius:8px;font-weight:bold}
+footer{background:#fff;padding:35px 5%;display:grid;grid-template-columns:2fr 2fr 1fr;border-top:1px solid #eee}footer p{color:#666}
+.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:50}.drawer{background:#fff;height:100%;width:min(450px,100%);margin-left:auto;padding:22px;overflow:auto}.close{float:right;border:0;background:none;font-size:26px}.row{display:flex;gap:12px;border-bottom:1px solid #eee;padding:14px 0}.mini{font-size:42px;background:#f5f5f5;padding:10px;border-radius:9px}.qty button{padding:3px 10px;border:1px solid #ddd;background:#fff}.field{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:7px}
+@media(max-width:800px){header{padding:10px 4%;flex-wrap:wrap}.search{order:3;flex-basis:100%}nav{padding:10px 4%}.hero{margin:15px 4%;padding:25px 7%}.hero h1{font-size:33px}.heroemoji{font-size:70px}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr);gap:10px}.sample{height:155px}.sample span{font-size:58px}section{padding-left:4%;padding-right:4%}.banner{margin-left:4%;margin-right:4%;display:block}footer{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">HK <span>PRINTS</span></div>
+ <input class="search" id="search" placeholder="Search mug, t-shirt, cap, frame...">
+ <button class="cart" onclick="openCart()">🛒 <small id="count">0</small></button>
+</header>
+<nav id="nav"></nav>
+
+<div class="hero">
+ <div><small>HK PRINTS • PERSONALIZED GIFTS</small><h1>Apni Photo,<br><span class="pink">Apna Style.</span></h1><p>Mug, Cover, Photo Frame, Cap, T-Shirt, Keychain aur bahut kuch.</p><button class="btn" onclick="document.getElementById('cat').scrollIntoView()">Shop Categories →</button></div>
+ <div class="heroemoji">🎁</div>
+</div>
+
+<section id="cat">
+ <div class="title"><h2>Shop by Category</h2></div>
+ <div class="categories" id="categories"></div>
+</section>
+
+<section>
+ <div class="title"><h2 id="heading">Trending Samples</h2><span id="num"></span></div>
+ <div class="products" id="products"></div>
+</section>
+
+<div class="banner"><div><h2>📸 Apni photo bhejo</h2><p>Photo upload karke personalized gift banwao.</p></div><label class="upload">Upload Photo<input type="file" hidden accept="image/*"></label></div>
+
+<footer><div><b>HK PRINTS</b><p>Personalized gifts & sublimation products.</p></div><div><b>Categories</b><p>Mug • Cover • Photo Frame • Cap • T-Shirt • Keychain</p></div><div><b>WhatsApp</b><p><a href="https://wa.me/918000339411">8000339411</a></p></div></footer>
+
+<div class="overlay" id="overlay" onclick="if(event.target.id==='overlay')closeCart()"><div class="drawer" id="drawer"></div></div>
+<script>
+const cats=[
+["Mugs","☕"],["Mobile Covers","📱"],["Photo Frames","🖼️"],["Caps","🧢"],["T-Shirts","👕"],["Keychains","🔑"],["Cushions","🛏️"]
+];
+const products=[
+["Mugs","☕","Magic Photo Mug","199"],["Mugs","☕","Couple Photo Mug","249"],["Mugs","☕","Best Brother Mug","199"],["Mugs","☕","Best Husband Mug","229"],
+["Mobile Covers","📱","Custom Photo Cover","199"],["Mobile Covers","📱","Couple Cover","229"],["Mobile Covers","📱","Name Cover","199"],["Mobile Covers","📱","Premium Printed Cover","299"],
+["Photo Frames","🖼️","Birthday Photo Frame","249"],["Photo Frames","🖼️","Couple Frame","299"],["Photo Frames","🖼️","Family Frame","349"],["Photo Frames","🖼️","Forever Frame","299"],
+["Caps","🧢","Custom Name Cap","199"],["Caps","🧢","Photo Printed Cap","249"],["Caps","🧢","Couple Cap","299"],["Caps","🧢","Gaming Cap","249"],
+["T-Shirts","👕","Custom Photo T-Shirt","299"],["T-Shirts","👕","Couple T-Shirt","599"],["T-Shirts","👕","Best Brother T-Shirt","329"],["T-Shirts","👕","Birthday T-Shirt","329"],
+["Keychains","🔑","Photo Keychain","99"],["Keychains","🔑","Name Keychain","119"],["Keychains","🔑","Couple Keychain","149"],["Keychains","🔑","Heart Keychain","129"],
+["Cushions","🛏️","Photo Cushion","249"],["Cushions","🛏️","Best Husband Cushion","299"],["Cushions","🛏️","Couple Cushion","299"],["Cushions","🛏️","Heart Cushion","279"]
+];
+let cart=[];
+function categoryHTML(){document.getElementById("categories").innerHTML=cats.map(c=>`<div class="cat" onclick="show('${c[0]}')"><div class="caticon">${c[1]}</div><b>${c[0]}</b></div>`).join("");document.getElementById("nav").innerHTML=`<button onclick="show('All')">✨ All</button>`+cats.map(c=>`<button onclick="show('${c[0]}')">${c[1]} ${c[0]}</button>`).join("")}
+function show(cat){let arr=cat==="All"?products:products.filter(p=>p[0]===cat);document.getElementById("heading").textContent=cat==="All"?"Trending Samples":cat+" Samples";document.getElementById("num").textContent=arr.length+" designs";document.getElementById("products").innerHTML=arr.map((p,i)=>`<div class="product"><button class="heart">♡</button><div class="sample"><span>${p[1]}</span></div><div class="pbody"><h3>${p[2]}</h3><div class="rating">★ 4.8 · Personalized</div><span class="price">₹${p[3]}</span><span class="old"> ₹399</span><button class="add" onclick="add('${p[2]}','${p[1]}','${p[3]}')">Add to Cart</button></div></div>`).join("")}
+function add(name,emoji,price){cart.push({name,emoji,price});document.getElementById("count").textContent=cart.length;openCart()}
+function openCart(){document.getElementById("overlay").style.display="block";document.getElementById("drawer").innerHTML=`<button class="close" onclick="closeCart()">×</button><h2>🛒 Cart</h2>`+(cart.length?cart.map(x=>`<div class="row"><div class="mini">${x.emoji}</div><div><b>${x.name}</b><br>₹${x.price}</div></div>`).join("")+`<h3>Total: ₹${cart.reduce((a,x)=>a+Number(x.price),0)}</h3><input class="field" placeholder="Name"><input class="field" placeholder="Mobile: 8000339411"><textarea class="field" placeholder="Full Address"></textarea><button class="btn" style="width:100%" onclick="alert('Order received in demo. Real payment/order backend can be connected.')">Place Order</button>`:`<p>Your cart is empty.</p>`)}
+function closeCart(){document.getElementById("overlay").style.display="none"}
+document.getElementById("search").oninput=e=>{let q=e.target.value.toLowerCase();let arr=products.filter(p=>(p[0]+" "+p[2]).toLowerCase().includes(q));document.getElementById("products").innerHTML=arr.map(p=>`<div class="product"><div class="sample"><span>${p[1]}</span></div><div class="pbody"><h3>${p[2]}</h3><span class="price">₹${p[3]}</span><button class="add" onclick="add('${p[2]}','${p[1]}','${p[3]}')">Add to Cart</button></div></div>`).join("")}
+categoryHTML();show("All");
+</script>
+</body>
+</html>
